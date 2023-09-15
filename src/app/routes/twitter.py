@@ -9,7 +9,7 @@ Completed on    :   in progress
 from datetime import timedelta
 import time
 from flask import (jsonify, request, make_response, Blueprint)
-from app.fetchers.twitter import fetch_twitter_followers
+from ..platforms.twitter import fetch_twitter_followers
 
 twitter = Blueprint('twitter', __name__, url_prefix='/api/v1/twitter')
 

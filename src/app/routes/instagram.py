@@ -6,11 +6,11 @@ Email           :   [muhammad.sesay@legacynetwork.io, ]
 Started writing :   30.08.2023
 Completed on    :   in progress
 """
-from datetime import timedelta
-import time
 
-from flask import (jsonify, request, make_response, Blueprint)
-from ..fetchers.platforms.instagram import fetch_instagram_followers
+from flask import (jsonify, Blueprint)
+from ..platforms.instagram import fetch_instagram_followers
+
+from ..models.models import db, InstagramModel
 
 instagram = Blueprint('instagram', __name__, url_prefix='/api/v1/instagram')
 
@@ -24,6 +24,10 @@ def get_twitter_followers():
     followers_list: The list of followers.
     """
     response = fetch_instagram_followers()
+
+    obj = InstagramModel(name="test", link="test", photo="Test")
+    db.session.add(obj)
+    db.session.commit(obj)
 
     return jsonify({
         "data": response,
