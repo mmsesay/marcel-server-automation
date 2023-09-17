@@ -8,7 +8,6 @@ Completed on    :   in progress
 """
 
 import csv
-import uuid
 
 
 def fetch_kickofflabs_users():

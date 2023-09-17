@@ -16,7 +16,7 @@ from flask_migrate import Migrate
 # import the routes
 from .routes.instagram import instagram
 from .routes.kickofflabs import kickofflabs
-from .models.models import db
+from .persistence.models import db
 
 # instantiate flask
 app = Flask(__name__)
@@ -35,6 +35,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # enable flask migrate
 migrate = Migrate(app, db)
+db.init_app(app)
 
 # import the models
-from .models import models
+from .persistence import models

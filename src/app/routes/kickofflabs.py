@@ -6,9 +6,13 @@ Email           :   [muhammad.sesay@legacynetwork.io, ]
 Started writing :   30.08.2023
 Completed on    :   in progress
 """
+import uuid
 
 from flask import (jsonify, Blueprint)
 from ..platforms.kickofflabs import fetch_kickofflabs_users
+from ..persistence.models import db
+from ..persistence.models import KickofflabsModel
+
 
 kickofflabs = Blueprint('kickofflabs', __name__, url_prefix='/api/v1/kickofflabs')
 
@@ -22,9 +26,21 @@ def get_kickofflabs_users():
     Returns:
     followers_list: The list of followers.
     """
-    response = fetch_kickofflabs_users()
+    try:
+        response = fetch_kickofflabs_users()
 
-    return jsonify({
-        "data": response,
-        "status": 200
-    })
+        obj = KickofflabsModel(id=uuid.uuid4(), emails={"emails": response})
+        db.session.add(obj)
+        db.session.commit()
+
+        return jsonify({
+            "data": response,
+            "message": "All kickofflabs users",
+            "status": 200
+        })
+    except:
+        return jsonify({
+            "data": response,
+            "message": "Failed to fetch kickofflabs users",
+            "status": 500
+        })

@@ -10,7 +10,7 @@ Completed on    :   in progress
 from flask import (jsonify, Blueprint)
 from ..platforms.instagram import fetch_instagram_followers
 
-from ..models.models import db, InstagramModel
+from ..persistence.models import db, InstagramModel
 
 instagram = Blueprint('instagram', __name__, url_prefix='/api/v1/instagram')
 
