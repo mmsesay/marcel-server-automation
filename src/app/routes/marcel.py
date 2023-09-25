@@ -1,29 +1,29 @@
 """
-Filename        :   routes.py
+Filename        :   marcel.py
 Description     :   This file contains the whole all the routes
 Author          :   Legacy Dev Team
 Email           :   [muhammad.sesay@legacynetwork.io, ]
 Started writing :   30.08.2023
 Completed on    :   in progress
 """
-from datetime import timedelta
 import time
 from flask import (jsonify, request, make_response, Blueprint)
-from ..platforms.twitter import fetch_twitter_followers
+from ..platforms.marcel import MarcelServer
 
-twitter = Blueprint('twitter', __name__, url_prefix='/api/v1/twitter')
+marcel = Blueprint('twitter', __name__, url_prefix='/api/v1/marcel')
 
-@twitter.route("/followers", methods=['GET'])
-def get_twitter_followers():
+
+@marcel.route("/login", methods=['GET'])
+def access_marcel_server():
     """
-    Fetches data from the twitter account
+    Invokes the marcel server class
     :params keyword: this is the keyword to query
     :return : the response from the invoked function
     """
-    response = fetch_twitter_followers()
+    marcel_server = MarcelServer()
+    marcel_server.login()
 
-    print("responsee::: ", response)
     return jsonify({
             "status": 200,
-            "data": "response"
+            "message": "login was successfully"
         })

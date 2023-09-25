@@ -1,66 +1,79 @@
-# scrape
+# WHM-automation
 
-A twitter web scraper can be used to scrape a list of Twitter features
+An automation tool that interacts with Marcel's server
 
 ## Built With
 
 - Flask
 - Selenium
-- Request
 
 ## Getting Started
 
 - **To get a local copy of the repository please run the following commands on your terminal:**
-
-  - `git clone git@github.com:mmsesay/speedykom-searcher-api.git`
-  - `cd speedykom-searcher-api`
-  - `python3 -m venv venv` to create a virtual environment
-  - `source venv/bin/activate` to activate the virtual environment
-  - `pip install -r requirements.txt` to intall the project dependencies
-
-- **Please run the following commands on your terminal to setup the db:**
-
-  - `cd src` to access the project main directory
-  - `python` or `python3` to access the interactive shell
-  - `from app import db, app` this commands starts references the db and flask app
-  - `with app.app_context():` press enter after
-  - `db.create_all()` press enter again
-  - press `ctl + d` to exit the shell
+  Clone the project
+  ```
+  git clone https://github.com/LegacyNetworkAG/WHM-automation.git
+  ```
+  Navigate into the directory
+  ```
+  cd WHM-automation
+  ```
+  Create a virtual environment if you don't have one.
+  ```
+  python3 -m venv venv
+  ``` 
+  Activate the virtual environment
+  ```
+  source venv/bin/activate
+  ```
+  Install the project dependencies
+  ```
+  pip install -r requirements.txt
+  ```
 
 - **Please run the following commands on your terminal to start the app:**
-
-  - `cd ..` to come out of the main directory
-  - `export FLASK_APP=project/server.py` to set the app for running
-  - `flask run` to start the server
-
-- **Please run the following commands on your terminal to start the app using docker:**
-
-  - Please ensure you have docker installed and is running.
-  - Please ensure you have cloned the project and navigate to the root directory via the terminal
-  - Use `docker build -t searcher-api .` in your ternimal and press enter
-  - Use `docker images` to verify you see the image being created
-  - Use `docker run -p 5000:5000 searcher-api` to start the app. You can add `-d` flag to the command to run on detach mode.
-  - Finally, open your api testing tool to interact with the endpoints.
-
-
-- **To run the tests please run the following commands on your terminal:**
-  - `git clone https://github.com/mmsesay/speedykom-searcher-api.git` Only if you have cloned it in the previous step above
-  - `pytest -v`
+ Set the flask app environ
+  ```
+  export FLASK_APP=src/server.py
+  ```
+  Start the server
+  ```
+  flask run
+  ```
 
 ## App Endpoints
+Open your API testing tool and hit this endpoint
+- GET: `/api/v1/marcel/login` to login into the marcel server.
 
-**Note: These are protected routes that needs an authorization header**
 
-- GET: `/api/v1/records/search/<keyword>` the keyword is a string like: `health benefits` to query the records.
-- GET: `/api/v1/records/<id>` to get a single record
-- GET: `/api/v1/records` to get all the records for health
+## Test The Automation
+- ***Please note that you should have a Chrome browser installed before trying this out***. </br>
+The snippet code below enables a headless call to the Chrome browser. </br>
+This basically means that the browser is hidden by default. 
+```
+self.options.add_argument('headless')
+```
+However, you can navigate to the ```marcel.py``` file inside the ```src/app/platforms``` directory and
+comment the code snippet by add a ```#``` character in order to see the full automation on the browser. 
+See example below:
+```
+# self.options.add_argument('headless')
+```
 
-**Note: These routes doesn't needs an authorization header**
+- **After commenting the code snippet, run the following commands on your terminal to start the automation:**
+  - Goto the root of the project ie.: ```YOUR_FILE_PATH/WHM-automation/```
+  - Run the following and see the automation.
+  ***Please note that you can use ```python``` or ```python3``` in the commands. It's based on what you have installed.***
+  ```
+  python3 src/runner.py
+  ```
+  - Kill ```ctrl + c``` the terminal after to close the session. <br />
 
-- POST: `/api/v1/register` Creates a new user with payload `{"email":"test@test.com", "password":"test"}`
-- POST: `/api/v1/login` Login a user with payload `{"email":"test@test.com", "password":"test"}`
 
-## Author
+ Final Note: ***Please uncomment the code snippet that you commented above before testing out the endpoints.***
+
+  
+## Authors
 
 👤 **Muhammad Sesay**
 
@@ -79,5 +92,3 @@ Feel free to check the [issues page](../../issues/).
 Give a ⭐️ if you like this project!
 
 ## Acknowledgments
-
-- Datasource from [Health.gov](https://health.gov/our-work/national-health-initiatives/health-literacy/consumer-health-content/free-web-content/apis-developers/api-documentation)

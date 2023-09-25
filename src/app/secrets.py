@@ -7,5 +7,7 @@ secrets = {
     'TWITTER_API_TOKEN_SECRET': 'Bq3faC5itJNcMamYuv8LfwardUCdHz5VPrfV45XRVD0AH',
     'DATABASE_USER': "testusr",
     'DATABASE_PASSWORD': 'pass1234',
-    'DATABASE_PORT': 5432
+    'DATABASE_PORT': 5432,
+    'MARCEL_SERVER_USER': 'root',
+    'MARCEL_SERVER_PASS': '3wrZY4qbINq19U5mI3',
 }

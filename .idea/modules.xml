@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/speedykom-searcher-api.iml" filepath="$PROJECT_DIR$/.idea/speedykom-searcher-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WHM-automation/.idea/WHM-automation.iml" filepath="$PROJECT_DIR$/../WHM-automation/.idea/WHM-automation.iml" />
     </modules>
   </component>
 </project>
